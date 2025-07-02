@@ -32,3 +32,25 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Routing
+
+```
+pages/
+├── api/
+│   └── hello.js           => API route: '/api/hello'
+├── index.js               => Route: '/'
+├── about.js               => Route: '/about'
+├── blog/
+│   ├── index.js           => Route: '/blog'
+│   └── [slug].js          => Dynamic route: '/blog/748126', '/blog/navneet'
+│── product/
+    └── [category]/
+        └── [id].js        => Dynamic route: '/product/electronics/42', '/product/fashion/345'
+```
+
+- Routing only works inside the pages/ directory.
+
+- Files outside of pages/ (e.g., components/, lib/) are not part of the routing system.
+
+- Dynamic routes can be nested and combined as needed.
