@@ -54,3 +54,43 @@ pages/
 - Files outside of pages/ (e.g., components/, lib/) are not part of the routing system.
 
 - Dynamic routes can be nested and combined as needed.
+
+## [SWR](https://swr.vercel.app/docs/getting-started) - React Hooks for Data Fetching
+
+- The name **SWR** is derived from `stale-while-revalidate`, a HTTP cache invalidation strategy popularized by HTTP RFC 5861(opens in a new tab). SWR is a strategy to first return the data from cache (stale), then send the fetch request (revalidate), and finally come with the up-to-date data.
+
+- **Documentation** :
+  [SWR Docs](https://swr.vercel.app/docs/getting-started)
+
+- **Installation**:
+
+  ```bash
+  npm i swr
+
+  pnpm/yarn add swr
+  ```
+
+- **Usage**
+
+  ```js
+  const fetcher = (...args) => fetch(...args).then((res) => res.json());
+  // If you want to use GraphQL API or libs like Axios, you can create your own fetcher function. Check here for more examples.
+  ```
+
+  Then you can import useSWR and start using it inside any function components:
+
+  ```js
+  import useSWR from "swr";
+
+  function Profile({ userId }) {
+    const { data, error, isLoading } = useSWR(`/api/user/${userId}`, fetcher);
+
+    if (error) return <div>failed to load</div>;
+    if (isLoading) return <div>loading...</div>;
+
+    // render data
+    return <div>hello {data.name}!</div>;
+  }
+  ```
+
+  > With SWR, components will get a stream of data updates constantly and automatically. And the UI will be always fast and reactive.
